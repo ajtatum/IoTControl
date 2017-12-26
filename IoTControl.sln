@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTControl.Web", "IoTControl.Web\IoTControl.Web.csproj", "{2C176489-A206-467A-ACFB-BE3669260F3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTControl.Models", "IoTControl.Models\IoTControl.Models.csproj", "{06964661-CCAB-4053-AD47-B9865D33E069}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTControl.Common", "IoTControl.DAL\IoTControl.Common.csproj", "{C50484CA-59EF-4C06-BF8C-CCCE34E2A86C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{2C176489-A206-467A-ACFB-BE3669260F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C176489-A206-467A-ACFB-BE3669260F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C176489-A206-467A-ACFB-BE3669260F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06964661-CCAB-4053-AD47-B9865D33E069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06964661-CCAB-4053-AD47-B9865D33E069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06964661-CCAB-4053-AD47-B9865D33E069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06964661-CCAB-4053-AD47-B9865D33E069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50484CA-59EF-4C06-BF8C-CCCE34E2A86C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50484CA-59EF-4C06-BF8C-CCCE34E2A86C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50484CA-59EF-4C06-BF8C-CCCE34E2A86C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50484CA-59EF-4C06-BF8C-CCCE34E2A86C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
