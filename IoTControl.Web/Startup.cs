@@ -1,9 +1,9 @@
-﻿using AJT.IoT.Web;
+﻿using IoTControl.Web;
 using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
-namespace AJT.IoT.Web
+namespace IoTControl.Web
 {
     public partial class Startup
     {

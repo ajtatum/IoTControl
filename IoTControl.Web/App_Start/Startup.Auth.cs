@@ -1,12 +1,12 @@
 ﻿using System;
-using AJT.IoT.Web.Models;
+using IoTControl.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace AJT.IoT.Web
+namespace IoTControl.Web
 {
     public partial class Startup
     {

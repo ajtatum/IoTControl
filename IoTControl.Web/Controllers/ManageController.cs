@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AJT.IoT.Web.Models;
+using IoTControl.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 
-namespace AJT.IoT.Web.Controllers
+namespace IoTControl.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller

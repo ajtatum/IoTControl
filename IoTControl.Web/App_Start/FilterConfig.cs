@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace AJT.IoT.Web
+namespace IoTControl.Web
 {
     public class FilterConfig
     {

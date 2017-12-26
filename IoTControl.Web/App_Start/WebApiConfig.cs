@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace AJT.IoT.Web
+namespace IoTControl.Web
 {
     public static class WebApiConfig
     {
