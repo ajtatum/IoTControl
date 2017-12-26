@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace AJT.IoT.Web
+namespace IoTControl.Web
 {
     public class BundleConfig
     {

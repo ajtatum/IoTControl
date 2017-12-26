@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace AJT.IoT.Web.Controllers
+namespace IoTControl.Web.Controllers
 {
     public class HomeController : Controller
     {

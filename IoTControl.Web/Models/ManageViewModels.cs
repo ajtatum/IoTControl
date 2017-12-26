@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace AJT.IoT.Web.Models
+namespace IoTControl.Web.Models
 {
     public class IndexViewModel
     {

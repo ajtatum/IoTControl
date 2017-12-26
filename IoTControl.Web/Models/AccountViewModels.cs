@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace AJT.IoT.Web.Models
+namespace IoTControl.Web.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

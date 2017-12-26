@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AJT.IoT.Web", "AJT.IoT.Web\AJT.IoT.Web.csproj", "{2C176489-A206-467A-ACFB-BE3669260F3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTControl.Web", "IoTControl.Web\IoTControl.Web.csproj", "{2C176489-A206-467A-ACFB-BE3669260F3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
