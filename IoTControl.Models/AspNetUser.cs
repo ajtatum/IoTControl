@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IoTControl.Models
 {
@@ -11,9 +12,10 @@ namespace IoTControl.Models
             AspNetUserLogins = new HashSet<AspNetUserLogin>();
             AspNetUserRoles = new HashSet<AspNetUserRole>();
             UserLifxFavorites = new HashSet<UserLifxFavorite>();
+            UserLifxAccessTokens = new HashSet<UserLifxAccessToken>();
         }
 
-        public string Id { get; set; }
+        public string UserId { get; set; }
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public string PasswordHash { get; set; }
@@ -30,7 +32,6 @@ namespace IoTControl.Models
         public ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public ICollection<AspNetUserRole> AspNetUserRoles { get; set; }
         public ICollection<UserLifxFavorite> UserLifxFavorites { get; set; }
-
-        public UserLifxSecret UserLifxSecret { get; set; }
+        public ICollection<UserLifxAccessToken> UserLifxAccessTokens { get; set; }
     }
 }

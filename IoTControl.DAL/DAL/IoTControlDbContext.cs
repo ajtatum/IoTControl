@@ -23,7 +23,7 @@ namespace IoTControl.Common.DAL
         public IDbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public IDbSet<AspNetUserRole> AspNetUserRoles { get; set; }
         public IDbSet<AspNetUser> AspNetUsers { get; set; }
-        public IDbSet<UserLifxSecret> UserLifxSecrets { get; set; }
+        public IDbSet<UserLifxAccessToken> UserLifxAccessTokens { get; set; }
         public IDbSet<UserLifxFavorite> UserLifxFavorites { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace IoTControl.Common.DAL
             modelBuilder.Configurations.Add(new AspNetUserLoginMap());
             modelBuilder.Configurations.Add(new AspNetUserRoleMap());
             modelBuilder.Configurations.Add(new AspNetUsersMap());
+
+            modelBuilder.Configurations.Add(new UserLifxAccessTokenMap());
+            modelBuilder.Configurations.Add(new UserLifxFavoriteMap());
         }
     }
 }
