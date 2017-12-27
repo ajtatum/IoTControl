@@ -54,6 +54,8 @@
     <Compile Include="Mapping\AspNetUserLoginMap.cs" />
     <Compile Include="Mapping\AspNetUserRoleMap.cs" />
     <Compile Include="Mapping\AspNetUsersMap.cs" />
+    <Compile Include="Mapping\UserLifxAccessTokenMap.cs" />
+    <Compile Include="Mapping\UserLifxFavoriteMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

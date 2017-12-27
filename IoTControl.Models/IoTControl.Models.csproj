@@ -48,7 +48,7 @@
     <Compile Include="AspNetUserLogin.cs" />
     <Compile Include="AspNetUserRole.cs" />
     <Compile Include="UserLifxFavorite.cs" />
-    <Compile Include="UserLifxSecret.cs" />
+    <Compile Include="UserLifxAccessToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
