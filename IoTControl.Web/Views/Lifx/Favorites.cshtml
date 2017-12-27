@@ -1,0 +1,35 @@
+﻿@model System.Collections.Generic.List<IoTControl.Models.UserLifxFavorite>
+
+@{
+    ViewBag.Title = "LIFX Favorites";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>LIFX Favorites</h2>
+
+<div style="padding-bottom: 10px;">
+    @Html.ActionLink("Add Favorite", "Add", null, new { @class = "btn btn-primary" })
+</div>
+<table id="tblFavorites" class="table table-striped table-hover table-bordered table-responsive" data-sorting="true" data-filtering="true" data-paging="true" data-paging-size="20">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">Created On</th>
+            <th data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">Updated On</th>
+            <th data-sortable="false" data-filterable="false"></th>
+            <th data-sortable="false" data-filterable="false"></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var m in Model)
+    {
+        <tr>
+            <td>@m.Name</td>
+            <td data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">@(m.CreatedOn.ToString("yyyy-MM-dd hh:MM tt"))</td>
+            <td data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">@(m.UpdatedOn.ToString("yyyy-MM-dd hh:MM tt"))</td>
+            <td style="text-align: center;">@Html.ActionLink("Run", "Run", new { id = m.UserLifxFavoriteId })</td>
+            <td style="text-align: center;">@Html.ActionLink("Edit", "Edit", new { id = m.UserLifxFavoriteId })</td>
+        </tr>
+    }
+    </tbody>
+</table>

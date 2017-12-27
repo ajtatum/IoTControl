@@ -1,0 +1,17 @@
+﻿@model IoTControl.Models.UserLifxFavorite
+
+@{
+    ViewBag.Title = "Add LIFX Favorite";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add LIFX Favorite</h2>
+
+@using (Html.BeginForm("Add", "Lifx", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.Partial("_PartialFavoriteEditor", Model)
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
