@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44360</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -214,11 +214,13 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LifxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="ExtensionMethods\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LifxStateResponse.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -300,6 +302,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Lifx\Index.cshtml" />
     <Content Include="Views\Lifx\AccessToken.cshtml" />
+    <Content Include="Views\Lifx\Favorites.cshtml" />
+    <Content Include="Views\Lifx\Add.cshtml" />
+    <Content Include="Views\Lifx\Edit.cshtml" />
+    <Content Include="Views\Lifx\_PartialFavoriteEditor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

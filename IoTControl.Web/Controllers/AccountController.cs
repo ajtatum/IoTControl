@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using IoTControl.Common.DAL;
 using IoTControl.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,13 +15,16 @@ namespace IoTControl.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IoTControlDbContext ioTControlDbContext;
 
-        public AccountController()
+        public AccountController(IoTControlDbContext ioTControlDbContext)
         {
+            this.ioTControlDbContext = ioTControlDbContext;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(IoTControlDbContext ioTControlDbContext, ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
+            this.ioTControlDbContext = ioTControlDbContext;
             UserManager = userManager;
             SignInManager = signInManager;
         }
