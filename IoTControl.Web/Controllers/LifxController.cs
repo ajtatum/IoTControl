@@ -173,7 +173,7 @@ namespace IoTControl.Web.Controllers
             {
                 dynamic currentState = new ExpandoObject();
                 currentState.power = lifxLight.Power;
-                currentState.color = $"hue: {Math.Round(lifxLight.Color.Hue, 0)} saturation {Math.Round(lifxLight.Color.Saturation, 2)} kelvin: {lifxLight.Color.Kelvin}";
+                currentState.color = $"hue:{Math.Round(lifxLight.Color.Hue, 0)} saturation:{Math.Round(lifxLight.Color.Saturation, 2)} kelvin:{lifxLight.Color.Kelvin}";
                 currentState.brightness = Math.Round(lifxLight.Brightness, 2);
                 currentState.duration = !string.IsNullOrEmpty(vm.JsonValue) 
                     ? (JObject.Parse(vm.JsonValue).Value<int?>("duration") ?? 10) 
