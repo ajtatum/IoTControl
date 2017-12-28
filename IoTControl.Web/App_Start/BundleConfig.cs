@@ -22,9 +22,10 @@ namespace IoTControl.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/csses").Include(
+                      "~/Content/css/bootstrap.css",
+                      "~/Content/css/site.css",
+                "~/Content/css/avengers.css"));
         }
     }
 }

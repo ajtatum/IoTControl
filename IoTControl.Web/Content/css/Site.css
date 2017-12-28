@@ -30,3 +30,25 @@
         display: block;
     }
 }
+
+.jumbotron-home {
+    background: none;
+    display: none;
+}
+
+.jumbotron-mobile {
+    display: block;
+}
+
+@media screen and (min-width: 768px) {
+    .jumbotron-home {
+        background: #303030 url('/Content/images/IOT.jpg') no-repeat center center;
+        height: 370px;
+        display: block;
+    }
+
+    .jumbotron-mobile {
+        display: none;
+    }
+}
+
