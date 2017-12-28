@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace IoTControl.Web.ViewModels
 {
     public class LifxViewModel
     {
-        public class AccessTokens
+        public class FavoriteEditor : IoTControl.Models.UserLifxFavorite
         {
-            public int Id { get; set; }
+            [NotMapped]
+            public List<SelectListItem> SelectorTypeList { get; set; }
         }
     }
 }

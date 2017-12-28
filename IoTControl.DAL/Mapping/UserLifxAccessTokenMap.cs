@@ -9,11 +9,7 @@ namespace IoTControl.Common.Mapping
         {
             this.ToTable("UserLifxAccessTokens", "dbo");
 
-            this.HasKey(a => a.UserLifxAccessTokenId);
-
-            this.HasRequired(d => d.User)
-                .WithMany(p => p.UserLifxAccessTokens)
-                .HasForeignKey(d => d.UserId);
+            this.HasKey(a => a.Id);
         }
     }
 }

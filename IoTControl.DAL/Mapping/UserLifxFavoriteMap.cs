@@ -9,11 +9,7 @@ namespace IoTControl.Common.Mapping
         {
             this.ToTable("UserLifxFavorites", "dbo");
 
-            this.HasKey(a => a.UserLifxFavoriteId);
-
-            this.HasRequired(x => x.User)
-                .WithMany(x => x.UserLifxFavorites)
-                .HasForeignKey(x => x.UserId);
+            this.HasKey(a => a.Id);
         }
     }
 }

@@ -20,6 +20,12 @@ namespace IoTControl.Web
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                config.CreateMap<IoTControl.Models.UserLifxFavorite, IoTControl.Web.ViewModels.LifxViewModel.FavoriteEditor>()
+                    .ForMember(x => x.SelectorTypeList, y => y.Ignore());
+            });
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

@@ -9,10 +9,9 @@ namespace IoTControl.Common.Mapping
         {
             this.ToTable("AspNetUsers", "dbo");
 
-            this.HasKey(a => a.UserId);
+            this.HasKey(a => a.Id);
 
-            this.Property(e => e.UserId)
-                .HasColumnName("Id")
+            this.Property(e => e.Id)
                 .HasMaxLength(128);
 
             this.Property(e => e.Email)
