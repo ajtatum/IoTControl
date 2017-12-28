@@ -47,6 +47,7 @@
     <Compile Include="AspNetUserClaim.cs" />
     <Compile Include="AspNetUserLogin.cs" />
     <Compile Include="AspNetUserRole.cs" />
+    <Compile Include="LookupItem.cs" />
     <Compile Include="UserLifxFavorite.cs" />
     <Compile Include="UserLifxAccessToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

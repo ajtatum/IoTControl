@@ -1,4 +1,4 @@
-﻿@model IoTControl.Models.UserLifxFavorite
+﻿@model IoTControl.Web.ViewModels.LifxViewModel.FavoriteEditor
 
 @{
     ViewBag.Title = "Edit LIFX Favorite";
@@ -7,11 +7,31 @@
 
 <h2>Edit LIFX Favorite</h2>
 
-@using (Html.BeginForm("Edit", "Lifx", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Edit", "Lifx", FormMethod.Post, new { @class = "form-horizontal", id = "frmLifxFavorite" }))
 {
     @Html.Partial("_PartialFavoriteEditor", Model)
 }
 
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        $("#btnGetState").click(function (e) {
+            var frmData = $("#frmLifxFavorite").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("GetCurrentColor","Lifx")",
+                data: frmData,
+                dataType: "json",
+                success: function (data) {
+                    $("#JsonValue").val(data);
+                },
+                fail: function (data) {
+                    alert("Error: " + data);
+                }
+            });
+        });
+
+    </script>
 }

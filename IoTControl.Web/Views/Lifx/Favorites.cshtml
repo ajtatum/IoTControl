@@ -27,8 +27,8 @@
             <td>@m.Name</td>
             <td data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">@(m.CreatedOn.ToString("yyyy-MM-dd hh:MM tt"))</td>
             <td data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">@(m.UpdatedOn.ToString("yyyy-MM-dd hh:MM tt"))</td>
-            <td style="text-align: center;">@Html.ActionLink("Run", "Run", new { id = m.UserLifxFavoriteId })</td>
-            <td style="text-align: center;">@Html.ActionLink("Edit", "Edit", new { id = m.UserLifxFavoriteId })</td>
+            <td style="text-align: center;">@Html.ActionLink("Run", "Run", new { id = m.Id })</td>
+            <td style="text-align: center;">@Html.ActionLink("Edit", "Edit", new { id = m.Id })</td>
         </tr>
     }
     </tbody>

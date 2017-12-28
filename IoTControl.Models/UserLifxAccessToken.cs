@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IoTControl.Models
 {
     public class UserLifxAccessToken
     {
-        public int UserLifxAccessTokenId { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         [Required]
         public string UserId { get; set; }
@@ -14,7 +14,6 @@ namespace IoTControl.Models
         [Display(Name = "Access Token")]
         public string AccessToken { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual AspNetUser User { get; set; }
+        public AspNetUser User { get; set; }
     }
 }

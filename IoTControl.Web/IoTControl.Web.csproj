@@ -56,6 +56,9 @@
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -210,19 +213,28 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Classes\LIFX\LifxApi.cs" />
+    <Compile Include="Classes\LIFX\LifxCapabilities.cs" />
+    <Compile Include="Classes\LIFX\LifxColor.cs" />
+    <Compile Include="Classes\LIFX\LifxGroup.cs" />
+    <Compile Include="Classes\LIFX\LifxLight.cs" />
+    <Compile Include="Classes\LIFX\LifxLocation.cs" />
+    <Compile Include="Classes\LIFX\LifxProduct.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LifxController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="ExtensionMethods\IdentityExtensions.cs" />
+    <Compile Include="ExtensionMethods\LifxExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\LifxStateResponse.cs" />
+    <Compile Include="Classes\LIFX\LifxStateResponse.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\LookupService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LifxViewModel.cs" />
   </ItemGroup>

@@ -16,9 +16,17 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.field-validation-error {
+    color: #b94a48;
+}
+
+.form-control.auto-height {
+    height: auto;
+}
+
+/* Make drop down menus show on hover */
+@media (min-width: 979px) {
+    ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: block;
+    }
 }
