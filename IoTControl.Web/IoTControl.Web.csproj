@@ -315,6 +315,7 @@
     <Content Include="Views\Lifx\Add.cshtml" />
     <Content Include="Views\Lifx\Edit.cshtml" />
     <Content Include="Views\Lifx\_PartialFavoriteEditor.cshtml" />
+    <None Include="connectionStrings.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
