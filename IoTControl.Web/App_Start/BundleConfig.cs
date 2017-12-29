@@ -24,8 +24,7 @@ namespace IoTControl.Web
 
             bundles.Add(new StyleBundle("~/Content/csses").Include(
                       "~/Content/css/bootstrap.css",
-                      "~/Content/css/site.css",
-                "~/Content/css/avengers.css"));
+                      "~/Content/css/site.css"));
         }
     }
 }
