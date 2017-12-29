@@ -219,6 +219,7 @@
     <Compile Include="Classes\LIFX\LifxLocation.cs" />
     <Compile Include="Classes\LIFX\LifxProduct.cs" />
     <Compile Include="Classes\LIFX\LifxStateResponse.cs" />
+    <Compile Include="Classes\Lighting\HsvColor.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LifxController.cs" />
@@ -237,6 +238,7 @@
   <ItemGroup>
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\spectrum.css" />
     <Content Include="Content\images\IOT.jpg" />
     <Content Include="Content\images\LIFX_Logo.png" />
     <Content Include="favicon.ico" />
@@ -265,10 +267,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\ntc.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\spectrum.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

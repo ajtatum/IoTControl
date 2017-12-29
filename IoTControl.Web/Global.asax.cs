@@ -5,6 +5,8 @@ using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
 using IoTControl.Common.DAL;
+using IoTControl.Web.Classes.Lighting;
+using IoTControl.Web.Classes.LIFX;
 
 namespace IoTControl.Web
 {
@@ -24,6 +26,17 @@ namespace IoTControl.Web
             {
                 config.CreateMap<IoTControl.Models.UserLifxFavorite, IoTControl.Web.ViewModels.LifxViewModel.FavoriteEditor>()
                     .ForMember(x => x.SelectorTypeList, y => y.Ignore());
+
+                config.CreateMap<HsvColor, LifxColor>()
+                    .ForMember(x => x.Hue, y => y.MapFrom(z => z.H))
+                    .ForMember(x => x.Saturation, y => y.MapFrom(z => z.S))
+                    .ForMember(x => x.Brightness, y => y.MapFrom(z => z.V))
+                    .ForMember(x => x.Name, y => y.Ignore())
+                    .ForMember(x => x.Kelvin, y => y.Ignore())
+                    .ForMember(x => x.Hex, y => y.Ignore())
+                    .ForMember(x => x.RGB, y => y.Ignore())
+                    .ForSourceMember(x => x.A, y => y.Ignore());
+
             });
 
             AreaRegistration.RegisterAllAreas();

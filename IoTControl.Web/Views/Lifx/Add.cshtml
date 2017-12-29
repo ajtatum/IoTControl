@@ -33,5 +33,31 @@
             });
         });
 
+        $("#ColorPicker").spectrum({
+            preferredFormat: "hsv",
+            flat: true,
+            showInput: true,
+            change: function (color) {
+                var ntcMatch = ntc.name(color.toHexString());
+                var nRgb = ntcMatch[0]; // RGB value of closest match
+                var nName = ntcMatch[1]; // Text string: Color name
+                var nExactmatch = ntcMatch[2]; // True if exact color match
+
+                $("#divColorName").text("So you like the color " + nName + " huh? Nice!");
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("GetLifxColorJson","Lifx")",
+                    data: color.toHsv(),
+                    dataType: "json",
+                    success: function (data) {
+                        $("#JsonValue").val(data);
+                    },
+                    fail: function (data) {
+                        alert("Error: " + data);
+                    }
+                });
+            }
+            });
     </script>
 }

@@ -19,12 +19,15 @@ namespace IoTControl.Web
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/respond.js",
+                        "~/scripts/spectrum.js",
+                        "~/scripts/ntc.js"));
 
             bundles.Add(new StyleBundle("~/Content/csses").Include(
-                      "~/Content/css/bootstrap.css",
-                      "~/Content/css/site.css"));
+                        "~/Content/css/bootstrap.css",
+                        "~/Content/css/spectrum.css",
+                        "~/Content/css/site.css"));
         }
     }
 }

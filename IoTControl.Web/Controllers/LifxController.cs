@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Dynamic;
 using System.Linq;
+using System.Text;
 using System.Web.Mvc;
 using IoTControl.Common.DAL;
 using IoTControl.Models;
+using IoTControl.Web.Classes.Lighting;
 using IoTControl.Web.Classes.LIFX;
 using IoTControl.Web.Services;
 using IoTControl.Web.ViewModels;
@@ -173,7 +175,7 @@ namespace IoTControl.Web.Controllers
             {
                 dynamic currentState = new ExpandoObject();
                 currentState.power = lifxLight.Power;
-                currentState.color = $"hue:{Math.Round(lifxLight.Color.Hue, 0)} saturation:{Math.Round(lifxLight.Color.Saturation, 2)} kelvin:{lifxLight.Color.Kelvin}";
+                currentState.color = $"hue:{Math.Round(lifxLight.Color.Hue.GetValueOrDefault(0), 0)} saturation:{Math.Round(lifxLight.Color.Saturation.GetValueOrDefault(0), 2)} kelvin:{lifxLight.Color.Kelvin}";
                 currentState.brightness = Math.Round(lifxLight.Brightness, 2);
                 currentState.duration = !string.IsNullOrEmpty(vm.JsonValue) 
                     ? (JObject.Parse(vm.JsonValue).Value<int?>("duration") ?? 10) 
@@ -217,6 +219,14 @@ namespace IoTControl.Web.Controllers
             }
 
             return null;
+        }
+
+        [HttpPost]
+        public JsonResult GetLifxColorJson(HsvColor hsvColor)
+        {
+            var color = AutoMapper.Mapper.Map<LifxColor>(hsvColor);
+
+            return Json(color.ToString(), JsonRequestBehavior.AllowGet);
         }
     }
 }
