@@ -16,6 +16,31 @@
     @Scripts.Render("~/bundles/jqueryval")
     
     <script type="text/javascript">
+        $(document).ready(function () {
+            var kelvins = [2500, 2750, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000];
+
+            for (var i = 0; i < kelvins.length; i++) {
+                var kelvin = kelvins[i];
+
+                var temperatureHex = chroma.temperature(kelvin);
+
+                $("<div/>", {
+                    text: kelvin + " Kelvin",
+                    id: "divK" + kelvin,
+                    name: "divK" + kelvin,
+                    css: {
+                        "background-color": temperatureHex
+                    },
+                    on: {
+                        click: function() {
+                            console.log(this.id);
+                        }
+                    },
+                    appendTo:"#divKelvins"
+                });
+            }
+        });
+
         $("#btnGetState").click(function (e) {
             var frmData = $("#frmLifxFavorite").serialize();
 
@@ -38,13 +63,6 @@
             flat: true,
             showInput: true,
             change: function (color) {
-                var ntcMatch = ntc.name(color.toHexString());
-                var nRgb = ntcMatch[0]; // RGB value of closest match
-                var nName = ntcMatch[1]; // Text string: Color name
-                var nExactmatch = ntcMatch[2]; // True if exact color match
-
-                $("#divColorName").text("So you like the color " + nName + " huh? Nice!");
-
                 $.ajax({
                     type: "POST",
                     url: "@Url.Action("GetLifxColorJson","Lifx")",
@@ -58,6 +76,6 @@
                     }
                 });
             }
-            });
+        });
     </script>
 }

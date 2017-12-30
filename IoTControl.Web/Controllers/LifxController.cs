@@ -226,7 +226,7 @@ namespace IoTControl.Web.Controllers
         {
             var color = AutoMapper.Mapper.Map<LifxColor>(hsvColor);
 
-            return Json(color.ToString(), JsonRequestBehavior.AllowGet);
+            return Json(JsonConvert.SerializeObject(color, Formatting.Indented), JsonRequestBehavior.AllowGet);
         }
     }
 }

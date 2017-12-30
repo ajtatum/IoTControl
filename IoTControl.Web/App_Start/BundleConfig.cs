@@ -20,9 +20,11 @@ namespace IoTControl.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                         "~/Scripts/bootstrap.js",
-                        "~/Scripts/respond.js",
-                        "~/scripts/spectrum.js",
-                        "~/scripts/ntc.js"));
+                        "~/Scripts/respond.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/colors").Include(
+                        "~/Scripts/spectrum.js",
+                        "~/Scripts/chroma.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/csses").Include(
                         "~/Content/css/bootstrap.css",
