@@ -7,37 +7,60 @@
 
 <h2>Add LIFX Favorite</h2>
 
-@using (Html.BeginForm("Add", "Lifx", FormMethod.Post, new { @class = "form-horizontal", id="frmLifxFavorite" }))
+@using (Html.BeginForm("Add", "Lifx", FormMethod.Post, new { @class = "form-horizontal", id = "frmLifxFavorite" }))
 {
     @Html.Partial("_PartialFavoriteEditor", Model)
 }
 
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    
+
     <script type="text/javascript">
         $(document).ready(function () {
             var kelvins = [2500, 2750, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000];
+            var s = $("<select />", {
+                id: "selectKelvin",
+                name: "selectKelvin",
+                css: {
+                    "color": "#000",
+                    "font-weight": "bold"
+                },
+                on: {
+                    click: function() {
+                        console.log($(this).val());
+                    }
+                },
+            });
+
+            $("<option />", {
+                value: "",
+                text: "Select Kelvin",
+                selected: true,
+                css: {
+                    "color": "#000",
+                    "font-weight": "bold"
+                },
+                appendTo: s
+            });
 
             for (var i = 0; i < kelvins.length; i++) {
                 var kelvin = kelvins[i];
 
                 var temperatureHex = chroma.temperature(kelvin);
 
-                $("<div/>", {
+
+                $("<option />", {
+                    value: kelvin,
                     text: kelvin + " Kelvin",
-                    id: "divK" + kelvin,
-                    name: "divK" + kelvin,
                     css: {
-                        "background-color": temperatureHex
+                        "background-color": temperatureHex,
+                        "color": "#000",
+                        "font-weight": "bold"
                     },
-                    on: {
-                        click: function() {
-                            console.log(this.id);
-                        }
-                    },
-                    appendTo:"#divKelvins"
+                    appendTo: s
                 });
+
+                $(s).appendTo("#divKelvins");
             }
         });
 
