@@ -7,6 +7,13 @@
 
 <h2>LIFX Access Token</h2>
 
+<div class="panel panel-info">
+    <div class="panel-heading">Unlike the arcade, tokens are free!</div>
+    <div class="panel-body">
+        If you don't have a LIFX Personal Access Token or need a new one, simply go to <a href="https://cloud.lifx.com/settings" target="_blank">https://cloud.lifx.com/settings</a>!
+    </div>
+</div>
+
 @using (Html.BeginForm("AccessToken", "Lifx", FormMethod.Post, new { @class = "form-horizontal" }))
 {
     @Html.AntiForgeryToken()
