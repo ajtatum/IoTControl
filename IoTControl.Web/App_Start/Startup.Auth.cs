@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using IoTControl.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
 using Owin;
 
 namespace IoTControl.Web
@@ -23,6 +28,7 @@ namespace IoTControl.Web
             // Configure the sign in cookie
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
+                CookieName = "IoTControl",
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
                 Provider = new CookieAuthenticationProvider
@@ -57,11 +63,25 @@ namespace IoTControl.Web
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            var googleAuth = new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = ConfigurationManager.AppSettings["GoogleClientId"],
+                ClientSecret = ConfigurationManager.AppSettings["GoogleClientSecret"],
+            };
+
+            googleAuth.Scope.Add("profile");
+
+            googleAuth.Provider = new GoogleOAuth2AuthenticationProvider()
+            {
+                OnAuthenticated = context =>
+                {
+                    var profileUrl = context.User["image"]["url"].ToString();
+                    context.Identity.AddClaim(new Claim(ClaimTypes.Uri, profileUrl));
+                    return Task.FromResult(0);
+                }
+            };
+
+            app.UseGoogleAuthentication(googleAuth);
         }
     }
 }

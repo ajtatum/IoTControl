@@ -252,6 +252,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="appSettings.config" />
     <None Include="Properties\PublishProfiles\babou - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -316,7 +317,9 @@
     <Content Include="Views\Lifx\Add.cshtml" />
     <Content Include="Views\Lifx\Edit.cshtml" />
     <Content Include="Views\Lifx\_PartialFavoriteEditor.cshtml" />
-    <None Include="connectionStrings.config" />
+    <None Include="connectionStrings.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -357,7 +360,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>12185</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:12185/</IISUrl>
+          <IISUrl>https://localhost:44360/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
