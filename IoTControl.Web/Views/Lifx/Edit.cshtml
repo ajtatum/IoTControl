@@ -37,7 +37,7 @@
             preferredFormat: "hsv",
             flat: true,
             showInput: true,
-            change: function() {
+            change: function () {
                 UpdateLifxJsonBody();
             }
         });
@@ -51,6 +51,9 @@
         });
 
         $("#Kelvin").on("change", function () {
+            var selectedKelvinColor = $("option:selected", this).css("background-color");
+            $(this).css("background-color", selectedKelvinColor);
+
             UpdateLifxJsonBody();
         });
 

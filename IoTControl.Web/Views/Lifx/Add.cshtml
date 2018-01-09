@@ -37,11 +37,7 @@
             preferredFormat: "hsv",
             flat: true,
             showInput: true,
-            //move: function(color) {
-            //    updateBorders(color);
-            //},
-            change: function (color) {
-                //updateBorders(color);
+            change: function () {
                 UpdateLifxJsonBody();
             }
         });
@@ -60,14 +56,6 @@
 
             UpdateLifxJsonBody();
         });
-
-        //function updateBorders(color) {
-        //    var hexColor = "transparent";
-        //    if(color) {
-        //        hexColor = color.toHexString();
-        //    }
-        //    $("#divSample").css("background-color", hexColor);
-        //}
 
         function UpdateLifxJsonBody() {
             var color = $("#ColorPicker").spectrum("get");
