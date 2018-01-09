@@ -14,8 +14,8 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">Created On</th>
-            <th data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">Updated On</th>
+            <th data-type="date" data-format-string="yyyy-MM-dd HH:mm tt">Created On</th>
+            <th data-type="date" data-format-string="yyyy-MM-dd HH:mm tt">Updated On</th>
             <th data-sortable="false" data-filterable="false"></th>
             <th data-sortable="false" data-filterable="false"></th>
         </tr>
@@ -25,8 +25,8 @@
     {
         <tr>
             <td>@m.Name</td>
-            <td data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">@(m.CreatedOn.ToString("yyyy-MM-dd hh:MM tt"))</td>
-            <td data-type="date" data-format-string="yyyy-MM-dd hh:MM tt">@(m.UpdatedOn.ToString("yyyy-MM-dd hh:MM tt"))</td>
+            <td>@(m.CreatedOn.ToString("yyyy-MM-dd HH:mm tt"))</td>
+            <td>@(m.UpdatedOn.ToString("yyyy-MM-dd HH:mm tt"))</td>
             <td style="text-align: center;">@Html.ActionLink("Run", "Run", new { id = m.Id })</td>
             <td style="text-align: center;">@Html.ActionLink("Edit", "Edit", new { id = m.Id })</td>
         </tr>
