@@ -212,6 +212,12 @@ namespace IoTControl.Web.Controllers
             if (lifxAccessToken != null)
             {
                 var selector = $"{favorite.SelectorType}:{favorite.SelectorValue}";
+
+                if (favorite.PickRandom)
+                {
+                    selector += ":random";
+                }
+
                 var apiUrl = LifxApi.EndPoints.SetState(selector);
 
                 dynamic lifxJson = DeconstructFavoriteJson(favorite.JsonValue);
