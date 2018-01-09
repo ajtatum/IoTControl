@@ -115,7 +115,8 @@ namespace IoTControl.Web.Controllers
             vm.LifxFavoriteJson = new LifxViewModel.LifxFavoriteJson
             {
                 Power = lifxFavoriteJson.Power,
-                Duration = lifxFavoriteJson.Duration
+                Duration = lifxFavoriteJson.Duration,
+                Kelvin = lifxFavoriteJson.Kelvin
             };
 
             return View(vm);
@@ -213,16 +214,9 @@ namespace IoTControl.Web.Controllers
                 var selector = $"{favorite.SelectorType}:{favorite.SelectorValue}";
                 var apiUrl = LifxApi.EndPoints.SetState(selector);
 
-                var lifxFavoriteJson = JsonConvert.DeserializeObject<LifxViewModel.LifxFavoriteJson>(favorite.JsonValue);
-                var lifxColor = AutoMapper.Mapper.Map<LifxColor>(lifxFavoriteJson);
-
                 dynamic lifxJson = DeconstructFavoriteJson(favorite.JsonValue);
 
                 return LifxApi.RunLifxClient(apiUrl, Method.PUT, lifxAccessToken, JsonConvert.SerializeObject(lifxJson));
-
-                //LifxClient client = new LifxClient(lifxAccessToken.AccessToken);
-                //var response = await client.SetColor(new Selector.GroupLabel("Bedroom"), new LifxColor.HSBK(190, 0.67F, 0.25F, 3500), 5, PowerState.On);
-                //return response;
             }
 
             return null;
@@ -246,17 +240,11 @@ namespace IoTControl.Web.Controllers
         [HttpPost]
         public JsonResult GetLifxColorJson(LifxViewModel.LifxFavoriteJson model)
         {
-            //var color = AutoMapper.Mapper.Map<LifxColor>(hsvColor);
-
-            //var lifxJson = AutoMapper.Mapper.Map<LifxViewModel.LifxFavoriteJson>(hsvColor);
-            //lifxJson.Power = "on";
-            //lifxJson.Duration = 5;
             if (string.IsNullOrEmpty(model.Power))
                 model.Power = "on";
 
             model.Saturation = Math.Round(model.Saturation.GetValueOrDefault(0), 2);
             model.Brightness = Math.Round(model.Brightness.GetValueOrDefault(0), 2);
-
 
             return Json(JsonConvert.SerializeObject(model, Formatting.Indented), JsonRequestBehavior.AllowGet);
         }

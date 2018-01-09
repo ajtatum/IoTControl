@@ -15,109 +15,7 @@
 @section scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-<script type="text/javascript">
-        //$(document).ready(function() {
-        //    var kelvins = [2500, 2750, 3000, 3200, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500, 8000, 8500, 9000];
-        //    var s = $("<select />", {
-        //        id: "selectKelvin",
-        //        name: "selectKelvin",
-        //        css: {
-        //            "color": "#000",
-        //            "font-weight": "bold"
-        //        },
-        //        on: {
-        //            change: function() {
-        //                UpdateLifxJsonBody();
-        //            }
-        //        },
-        //    });
-
-        //    $("<option />", {
-        //        value: "",
-        //        text: "Select Kelvin",
-        //        selected: true,
-        //        css: {
-        //            "color": "#000",
-        //            "font-weight": "bold"
-        //        },
-        //        appendTo: s
-        //    });
-
-        //    for (var i = 0; i < kelvins.length; i++) {
-        //        var kelvin = kelvins[i];
-
-        //        var temperatureHex = chroma.temperature(kelvin);
-
-        //        var optionText = kelvin + " K ";
-
-        //        switch (kelvin) {
-        //        case 2500:
-        //                optionText += "(Ultra Warm)";
-        //            break;
-        //        case 2750:
-        //            optionText += "(Incandescant)";
-        //            break;
-        //        case 3000:
-        //            optionText += "(Warm)";
-        //            break;
-        //        case 3200:
-        //            optionText += "(Neutral Warm)";
-        //            break;
-        //        case 3500:
-        //            optionText += "(Neutral)";
-        //            break;
-        //        case 4000:
-        //            optionText += "(Cool)";
-        //            break;
-        //        case 4500:
-        //            optionText += "(Cool Daylight)";
-        //            break;
-        //        case 5000:
-        //            optionText += "(Soft Daylight)";
-        //            break;
-        //        case 5500:
-        //            optionText += "(Daylight)";
-        //            break;
-        //        case 6000:
-        //            optionText += "(Noon Daylight)";
-        //            break;
-        //        case 6500:
-        //            optionText += "(Bright Daylight)";
-        //            break;
-        //        case 7000:
-        //            optionText += "(Cloudy Daylight)";
-        //            break;
-        //        case 7500:
-        //            optionText += "(Blue Daylight)";
-        //            break;
-        //        case 8000:
-        //            optionText += "(Blue Overcast)";
-        //            break;
-        //        case 8500:
-        //            optionText += "(Blue Water)";
-        //            break;
-        //        case 9000:
-        //            optionText += "(Blue Ice)";
-        //            break;
-        //        default:
-        //        }
-
-
-        //        $("<option />", {
-        //            value: kelvin,
-        //            text: optionText,
-        //            css: {
-        //                "background-color": temperatureHex,
-        //                "color": "#000",
-        //                "font-weight": "bold"
-        //            },
-        //            appendTo: s
-        //        });
-
-        //        $(s).appendTo("#divKelvins");
-        //    }
-        //});
-
+    <script type="text/javascript">
         $("#btnGetState").click(function(e) {
             var frmData = $("#frmLifxFavorite").serialize();
 
@@ -139,7 +37,11 @@
             preferredFormat: "hsv",
             flat: true,
             showInput: true,
-            change: function() {
+            //move: function(color) {
+            //    updateBorders(color);
+            //},
+            change: function (color) {
+                //updateBorders(color);
                 UpdateLifxJsonBody();
             }
         });
@@ -152,9 +54,20 @@
             UpdateLifxJsonBody();
         });
 
-        $("#Kelvin").on("change", function() {
+        $("#Kelvin").on("change", function () {
+            var selectedKelvinColor = $("option:selected", this).css("background-color");
+            $(this).css("background-color", selectedKelvinColor);
+
             UpdateLifxJsonBody();
         });
+
+        //function updateBorders(color) {
+        //    var hexColor = "transparent";
+        //    if(color) {
+        //        hexColor = color.toHexString();
+        //    }
+        //    $("#divSample").css("background-color", hexColor);
+        //}
 
         function UpdateLifxJsonBody() {
             var color = $("#ColorPicker").spectrum("get");
@@ -184,5 +97,5 @@
                 }
             });
         }
-</script>
+    </script>
 }

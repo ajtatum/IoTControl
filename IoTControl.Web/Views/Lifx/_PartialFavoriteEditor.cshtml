@@ -65,10 +65,10 @@
                 <h4>For White Bulbs</h4>
                 <div id="divKelvins">
                     <select id="Kelvin" name="Kelvin" class="form-control">
-                        <option value="">Select Kelvin</option>
+                        <option style="background-color: #FFF; color: #000; font-weight: bold;" value="">Select Kelvin</option>
                         @foreach (var k in Model.KelvinList)
                         {
-                            <option style="background-color: @k.RgbColor; color: #000; font-weight: bold;" value="@k.Id">@k.Description</option>
+                            <option style="background-color: @k.RgbColor; color: #000; font-weight: bold;" value="@k.Id" @(k.Id == Model.LifxFavoriteJson.Kelvin ? "selected" : "")>@k.Description</option>
                         }
                     </select>
                 </div>

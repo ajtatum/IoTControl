@@ -11,6 +11,11 @@ namespace IoTControl.Web.ViewModels
     {
         public class FavoriteEditor : IoTControl.Models.UserLifxFavorite
         {
+            public FavoriteEditor()
+            {
+                LifxFavoriteJson = new LifxFavoriteJson();
+            }
+
             [NotMapped]
             public List<SelectListItem> SelectorTypeList { get; set; }
 
@@ -23,9 +28,6 @@ namespace IoTControl.Web.ViewModels
             [NotMapped]
             [Display(Name = "Color Picker")]
             public string ColorPicker { get; set; }
-
-            [NotMapped]
-            public string Kelvin { get; set; }
 
             [NotMapped]
             public LifxFavoriteJson LifxFavoriteJson { get; set; }
