@@ -1,10 +1,20 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using Newtonsoft.Json;
 
 namespace IoTControl.Web.Classes.LIFX
 {
     public class LifxColor
     {
+        public LifxColor() { }
+
+        public LifxColor(Color color)
+        {
+            Hue = color.GetHue();
+            Saturation = color.GetSaturation();
+            Brightness = color.GetBrightness();
+        }
+
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
 

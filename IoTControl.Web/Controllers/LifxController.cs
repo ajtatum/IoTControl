@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Drawing;
 using System.Dynamic;
 using System.Linq;
-using System.Text;
 using System.Web.Mvc;
 using IoTControl.Common.DAL;
 using IoTControl.Models;
-using IoTControl.Web.Classes.Lighting;
 using IoTControl.Web.Classes.LIFX;
 using IoTControl.Web.Services;
 using IoTControl.Web.ViewModels;
@@ -21,11 +20,11 @@ namespace IoTControl.Web.Controllers
     [Authorize]
     public class LifxController : Controller
     {
+        private static readonly Random rand = new Random();
+
         private readonly IoTControlDbContext dbContext;
         private readonly LookupService lookupService;
         private string CurrentUserId => System.Web.HttpContext.Current.User.Identity.GetUserId();
-
-        private const string LifxApiUrl = "https://api.lifx.com/v1/lights/{0}:{1}/state";
 
         public LifxController(IoTControlDbContext dbContext)
         {
@@ -220,7 +219,7 @@ namespace IoTControl.Web.Controllers
 
                 var apiUrl = LifxApi.EndPoints.SetState(selector);
 
-                dynamic lifxJson = DeconstructFavoriteJson(favorite.JsonValue);
+                dynamic lifxJson = DeconstructFavoriteJson(favorite);
 
                 return LifxApi.RunLifxClient(apiUrl, Method.PUT, lifxAccessToken, JsonConvert.SerializeObject(lifxJson));
             }
@@ -255,10 +254,18 @@ namespace IoTControl.Web.Controllers
             return Json(JsonConvert.SerializeObject(model, Formatting.Indented), JsonRequestBehavior.AllowGet);
         }
 
-        private dynamic DeconstructFavoriteJson(string favoriteJson)
+        private Color GenerateRandomColor()
         {
-            var lifxFavoriteJson = JsonConvert.DeserializeObject<LifxViewModel.LifxFavoriteJson>(favoriteJson);
-            var lifxColor = AutoMapper.Mapper.Map<LifxColor>(lifxFavoriteJson);
+            return Color.FromArgb(rand.Next(256), rand.Next(256), rand.Next(256));
+        }
+
+        private dynamic DeconstructFavoriteJson(UserLifxFavorite favorite)
+        {
+            var lifxFavoriteJson = JsonConvert.DeserializeObject<LifxViewModel.LifxFavoriteJson>(favorite.JsonValue);
+
+            var lifxColor = favorite.Name.Contains("{Color}")
+                ? new LifxColor(GenerateRandomColor())
+                : AutoMapper.Mapper.Map<LifxColor>(lifxFavoriteJson);
 
             dynamic lifxJson = new ExpandoObject();
             lifxJson.color = lifxColor.ToString();

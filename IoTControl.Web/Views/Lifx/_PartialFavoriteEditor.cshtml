@@ -89,7 +89,7 @@
         @Html.LabelFor(m => m.JsonValue, new { @class = "control-label" })
     </div>
     <div class="col-sm-10">
-        @Html.TextAreaFor(m => m.JsonValue, new { @class = "form-control", style = "height:500px;" })
+        @Html.TextAreaFor(m => m.JsonValue, new { @class = "form-control", style = "height:200px;" })
         @Html.ValidationMessageFor(m => m.JsonValue)
     </div>
 </div>
@@ -99,5 +99,27 @@
         @Html.HiddenFor(x => x.UserId)
         @Html.HiddenFor(x => x.CreatedOn)
         <button id="btnSaveFavorite" type="submit" class="btn btn-primary">Save Favorite</button>
+    </div>
+</div>
+<div id="modalJsonEdit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Manually Edit Json</h4>
+            </div>
+            <div class="modal-body">
+                <p>Alright, so you see the JSON and you're feeling adventurous. This JSON looks really simple;
+                    however, it's been artfully crafted to work with LIFX. I'm sure you don't want to break anything,
+                    but who am I to judge? If you want to give it a go, click Continue.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnContinueJsonEdit" type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button id="btnCancelJsonEdit" type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+
     </div>
 </div>

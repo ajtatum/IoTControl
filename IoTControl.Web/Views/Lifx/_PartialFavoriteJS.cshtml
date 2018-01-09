@@ -1,72 +1,91 @@
 ﻿<script type="text/javascript">
-        $("#btnGetState").click(function(e) {
-            var frmData = $("#frmLifxFavorite").serialize();
+    $(function() {
+        $("#JsonValue").prop("readonly", true);
+    });
 
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("GetCurrentColor", "Lifx")",
-                data: frmData,
-                dataType: "json",
-                success: function(data) {
-                    $("#JsonValue").val(data);
-                },
-                fail: function(data) {
-                    alert("Error: " + data);
-                }
-            });
-        });
+    $("#JsonValue").on("click", function() {
+        var jsonValueIsReadOnly = $("#JsonValue").prop("readonly");
+        if (jsonValueIsReadOnly) {
+            $("#modalJsonEdit").modal();
+        }
+    });
 
-        $("#ColorPicker").spectrum({
-            preferredFormat: "hsv",
-            appendTo: "divColorPicker",
-            flat: true,
-            showInput: true,
-            change: function () {
-                UpdateLifxJsonBody();
+    $("#btnContinueJsonEdit").on("click", function() {
+        $("#JsonValue").prop("readonly", false);
+    });
+
+    $("#btnCancelJsonEdit").on("click", function () {
+        $("#JsonValue").prop("readonly", true);
+    });
+
+    $("#btnGetState").click(function(e) {
+        var frmData = $("#frmLifxFavorite").serialize();
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetCurrentColor", "Lifx")",
+            data: frmData,
+            dataType: "json",
+            success: function(data) {
+                $("#JsonValue").val(data);
+            },
+            fail: function(data) {
+                alert("Error: " + data);
             }
         });
+    });
 
-        $("#LifxFavoriteJson_Duration").on("change", function() {
+    $("#ColorPicker").spectrum({
+        preferredFormat: "hsv",
+        appendTo: "divColorPicker",
+        flat: true,
+        showInput: true,
+        change: function () {
             UpdateLifxJsonBody();
-        });
-
-        $("#LifxFavoriteJson_Power").on("change", function() {
-            UpdateLifxJsonBody();
-        });
-
-        $("#Kelvin").on("change", function () {
-            var selectedKelvinColor = $("option:selected", this).css("background-color");
-            $(this).css("background-color", selectedKelvinColor);
-
-            UpdateLifxJsonBody();
-        });
-
-        function UpdateLifxJsonBody() {
-            var color = $("#ColorPicker").spectrum("get");
-
-            var hsvColor = color.toHsv();
-
-            var model = {
-                power: $("#LifxFavoriteJson_Power").val(),
-                hue: hsvColor.h,
-                saturation: hsvColor.s,
-                brightness: hsvColor.v,
-                kelvin: $("#Kelvin").val(),
-                duration: $("#LifxFavoriteJson_Duration").val()
-            };
-
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("GetLifxColorJson", "Lifx")",
-                data: JSON.stringify(model),
-                contentType: "application/json",
-                dataType: "json",
-                success: function(data) {
-                    $("#JsonValue").val(data);
-                },
-                fail: function(data) {
-                    alert("Error: " + data);
-                }
-            });
         }
+    });
+
+    $("#LifxFavoriteJson_Duration").on("change", function() {
+        UpdateLifxJsonBody();
+    });
+
+    $("#LifxFavoriteJson_Power").on("change", function() {
+        UpdateLifxJsonBody();
+    });
+
+    $("#Kelvin").on("change", function () {
+        var selectedKelvinColor = $("option:selected", this).css("background-color");
+        $(this).css("background-color", selectedKelvinColor);
+
+        UpdateLifxJsonBody();
+    });
+
+    function UpdateLifxJsonBody() {
+        var color = $("#ColorPicker").spectrum("get");
+
+        var hsvColor = color.toHsv();
+
+        var model = {
+            power: $("#LifxFavoriteJson_Power").val(),
+            hue: hsvColor.h,
+            saturation: hsvColor.s,
+            brightness: hsvColor.v,
+            kelvin: $("#Kelvin").val(),
+            duration: $("#LifxFavoriteJson_Duration").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("GetLifxColorJson", "Lifx")",
+            data: JSON.stringify(model),
+            contentType: "application/json",
+            dataType: "json",
+            success: function(data) {
+                $("#JsonValue").val(data);
+            },
+            fail: function(data) {
+                alert("Error: " + data);
+            }
+        });
+    }
 </script>
