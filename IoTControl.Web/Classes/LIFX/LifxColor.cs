@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace IoTControl.Web.Classes.LIFX
@@ -16,11 +14,11 @@ namespace IoTControl.Web.Classes.LIFX
         [JsonProperty("saturation", NullValueHandling = NullValueHandling.Ignore)]
         public double? Saturation { get; set; }
 
-        [JsonProperty("kelvin", NullValueHandling = NullValueHandling.Ignore)]
-        public long? Kelvin { get; set; }
-
         [JsonProperty("brightness", NullValueHandling = NullValueHandling.Ignore)]
         public double? Brightness { get; set; }
+
+        [JsonProperty("kelvin", NullValueHandling = NullValueHandling.Ignore)]
+        public long? Kelvin { get; set; }
 
         [JsonProperty("hex", NullValueHandling = NullValueHandling.Ignore)]
         public string Hex { get; set; }

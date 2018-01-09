@@ -92,6 +92,8 @@ namespace IoTControl.Web.Controllers
 
             var vm = AutoMapper.Mapper.Map<UserLifxFavorite, LifxViewModel.FavoriteEditor>(userFavorite);
             vm.SelectorTypeList = lookupService.GetSelectListItems("Select Selector", "LifxSelector");
+            vm.PowerOptionsList = lookupService.GetSelectListItems("Select Power", "LifxPowerOption");
+            vm.KelvinList = dbContext.Kelvins.OrderBy(x => x.Id).ToList();
 
             return View(vm);
         }
@@ -99,9 +101,22 @@ namespace IoTControl.Web.Controllers
         public ActionResult Edit(int id)
         {
             var userFavorite = dbContext.UserLifxFavorites.FirstOrDefault(x => x.Id == id && x.UserId == CurrentUserId);
+            if (userFavorite == null)
+                return RedirectToAction("Favorites", "Lifx");
 
             var vm = AutoMapper.Mapper.Map<UserLifxFavorite, LifxViewModel.FavoriteEditor>(userFavorite);
             vm.SelectorTypeList = lookupService.GetSelectListItems("Select Selector", "LifxSelector");
+            vm.PowerOptionsList = lookupService.GetSelectListItems("Select Power", "LifxPowerOption");
+            vm.KelvinList = dbContext.Kelvins.OrderBy(x => x.Id).ToList();
+
+            var lifxFavoriteJson = JsonConvert.DeserializeObject<LifxViewModel.LifxFavoriteJson>(userFavorite.JsonValue);
+            vm.ColorPicker = $"hsv({lifxFavoriteJson.Hue}, {lifxFavoriteJson.Saturation}, {lifxFavoriteJson.Brightness})";
+
+            vm.LifxFavoriteJson = new LifxViewModel.LifxFavoriteJson
+            {
+                Power = lifxFavoriteJson.Power,
+                Duration = lifxFavoriteJson.Duration
+            };
 
             return View(vm);
         }
@@ -175,8 +190,10 @@ namespace IoTControl.Web.Controllers
             {
                 dynamic currentState = new ExpandoObject();
                 currentState.power = lifxLight.Power;
-                currentState.color = $"hue:{Math.Round(lifxLight.Color.Hue.GetValueOrDefault(0), 0)} saturation:{Math.Round(lifxLight.Color.Saturation.GetValueOrDefault(0), 2)} kelvin:{lifxLight.Color.Kelvin}";
+                currentState.hue = Convert.ToInt32(lifxLight.Color.Hue.GetValueOrDefault(0));
+                currentState.saturation = Math.Round(lifxLight.Color.Saturation.GetValueOrDefault(0), 2);
                 currentState.brightness = Math.Round(lifxLight.Brightness, 2);
+                currentState.kelvin = lifxLight.Color.Kelvin;
                 currentState.duration = !string.IsNullOrEmpty(vm.JsonValue) 
                     ? (JObject.Parse(vm.JsonValue).Value<int?>("duration") ?? 10) 
                     : 10;
@@ -196,7 +213,12 @@ namespace IoTControl.Web.Controllers
                 var selector = $"{favorite.SelectorType}:{favorite.SelectorValue}";
                 var apiUrl = LifxApi.EndPoints.SetState(selector);
 
-                return LifxApi.RunLifxClient(apiUrl, Method.PUT, lifxAccessToken, favorite.JsonValue);
+                var lifxFavoriteJson = JsonConvert.DeserializeObject<LifxViewModel.LifxFavoriteJson>(favorite.JsonValue);
+                var lifxColor = AutoMapper.Mapper.Map<LifxColor>(lifxFavoriteJson);
+
+                dynamic lifxJson = DeconstructFavoriteJson(favorite.JsonValue);
+
+                return LifxApi.RunLifxClient(apiUrl, Method.PUT, lifxAccessToken, JsonConvert.SerializeObject(lifxJson));
 
                 //LifxClient client = new LifxClient(lifxAccessToken.AccessToken);
                 //var response = await client.SetColor(new Selector.GroupLabel("Bedroom"), new LifxColor.HSBK(190, 0.67F, 0.25F, 3500), 5, PowerState.On);
@@ -222,11 +244,34 @@ namespace IoTControl.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetLifxColorJson(HsvColor hsvColor)
+        public JsonResult GetLifxColorJson(LifxViewModel.LifxFavoriteJson model)
         {
-            var color = AutoMapper.Mapper.Map<LifxColor>(hsvColor);
+            //var color = AutoMapper.Mapper.Map<LifxColor>(hsvColor);
 
-            return Json(JsonConvert.SerializeObject(color, Formatting.Indented), JsonRequestBehavior.AllowGet);
+            //var lifxJson = AutoMapper.Mapper.Map<LifxViewModel.LifxFavoriteJson>(hsvColor);
+            //lifxJson.Power = "on";
+            //lifxJson.Duration = 5;
+            if (string.IsNullOrEmpty(model.Power))
+                model.Power = "on";
+
+            model.Saturation = Math.Round(model.Saturation.GetValueOrDefault(0), 2);
+            model.Brightness = Math.Round(model.Brightness.GetValueOrDefault(0), 2);
+
+
+            return Json(JsonConvert.SerializeObject(model, Formatting.Indented), JsonRequestBehavior.AllowGet);
+        }
+
+        private dynamic DeconstructFavoriteJson(string favoriteJson)
+        {
+            var lifxFavoriteJson = JsonConvert.DeserializeObject<LifxViewModel.LifxFavoriteJson>(favoriteJson);
+            var lifxColor = AutoMapper.Mapper.Map<LifxColor>(lifxFavoriteJson);
+
+            dynamic lifxJson = new ExpandoObject();
+            lifxJson.color = lifxColor.ToString();
+            lifxJson.duration = lifxFavoriteJson.Duration;
+            lifxJson.power = lifxFavoriteJson.Power;
+
+            return lifxJson;
         }
     }
 }

@@ -7,6 +7,7 @@ using Autofac.Integration.Mvc;
 using IoTControl.Common.DAL;
 using IoTControl.Web.Classes.Lighting;
 using IoTControl.Web.Classes.LIFX;
+using IoTControl.Web.ViewModels;
 
 namespace IoTControl.Web
 {
@@ -24,18 +25,45 @@ namespace IoTControl.Web
 
             AutoMapper.Mapper.Initialize(config =>
             {
-                config.CreateMap<IoTControl.Models.UserLifxFavorite, IoTControl.Web.ViewModels.LifxViewModel.FavoriteEditor>()
-                    .ForMember(x => x.SelectorTypeList, y => y.Ignore());
+                config.CreateMap<IoTControl.Models.UserLifxFavorite, LifxViewModel.FavoriteEditor>()
+                    .ForMember(x => x.SelectorTypeList, y => y.Ignore())
+                    .ForMember(x => x.PowerOptionsList, y => y.Ignore())
+                    .ForMember(x => x.ColorPicker, y => y.Ignore())
+                    .ForMember(x => x.Kelvin, y => y.Ignore());
 
-                config.CreateMap<HsvColor, LifxColor>()
+                config.CreateMap<HsvColor, LifxViewModel.LifxFavoriteJson>()
                     .ForMember(x => x.Hue, y => y.MapFrom(z => z.H))
                     .ForMember(x => x.Saturation, y => y.MapFrom(z => z.S))
                     .ForMember(x => x.Brightness, y => y.MapFrom(z => z.V))
+                    .ForSourceMember(x => x.A, y => y.Ignore())
+                    .ForAllOtherMembers(x=>x.Ignore());
+
+                config.CreateMap<LifxViewModel.LifxFavoriteJson, LifxColor>()
+                    .ForMember(x => x.Hue, y => y.MapFrom(z => z.Hue))
+                    .ForMember(x => x.Saturation, y => y.MapFrom(z => z.Saturation))
+                    .ForMember(x => x.Brightness, y => y.MapFrom(z => z.Brightness))
+                    .ForMember(x => x.Kelvin, y => y.MapFrom(z => z.Kelvin))
                     .ForMember(x => x.Name, y => y.Ignore())
-                    .ForMember(x => x.Kelvin, y => y.Ignore())
                     .ForMember(x => x.Hex, y => y.Ignore())
-                    .ForMember(x => x.RGB, y => y.Ignore())
-                    .ForSourceMember(x => x.A, y => y.Ignore());
+                    .ForMember(x => x.RGB, y => y.Ignore());
+
+                //config.CreateMap<HsvColor, LifxColor>()
+                //    .ForMember(x => x.Hue, y => y.MapFrom(z => z.H))
+                //    .ForMember(x => x.Saturation, y => y.MapFrom(z => z.S))
+                //    .ForMember(x => x.Brightness, y => y.MapFrom(z => z.V))
+                //    .ForMember(x => x.Name, y => y.Ignore())
+                //    .ForMember(x => x.Kelvin, y => y.Ignore())
+                //    .ForMember(x => x.Hex, y => y.Ignore())
+                //    .ForMember(x => x.RGB, y => y.Ignore())
+                //    .ForSourceMember(x => x.A, y => y.Ignore());
+
+                //config.CreateMap<HsvColor, LifxViewModel.LifxFavoriteJson>()
+                //    .ForMember(x => x.Hue, y => y.MapFrom(z => z.H))
+                //    .ForMember(x => x.Saturation, y => y.MapFrom(z => z.S))
+                //    .ForMember(x => x.Brightness, y => y.MapFrom(z => z.V))
+                //    .ForMember(x => x.Kelvin, y => y.Ignore())
+                //    .ForMember(x => x.Power, y => y.Ignore())
+                //    .ForMember(x => x.Duration, y => y.Ignore());
 
             });
 

@@ -26,6 +26,7 @@ namespace IoTControl.Common.DAL
         public IDbSet<UserLifxAccessToken> UserLifxAccessTokens { get; set; }
         public IDbSet<UserLifxFavorite> UserLifxFavorites { get; set; }
         public IDbSet<LookupItem> LookupItems { get; set; }
+        public IDbSet<Kelvin> Kelvins { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
