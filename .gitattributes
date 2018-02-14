@@ -61,3 +61,40 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+###############################################################################
+# GitHub Linguist
+###############################################################################
+# Set Language
+*.cs linguist-language=csharp
+
+# Visual Studio IntelliSense
+- -vsdoc\.js$
+- \.intellisense\.js$
+
+# NuGet
+- ^[Pp]ackages\/.+\.\d+\/
+
+# Minified JavaScript and CSS
+- (\.|-)min\.(js|css)$
+
+# jQuery
+- (^|/)jquery([^.]*)\.js$
+- (^|/)jquery\-\d\.\d+(\.\d+)?\.js$
+
+# jQuery validation plugin (MS bundles this with asp.net mvc)
+- (^|/)jquery([^.]*)\.validate(\.unobtrusive)?\.js$
+- (^|/)jquery([^.]*)\.unobtrusive\-ajax\.js$
+
+# Bootstrap css and js
+- (^|/)bootstrap([^.]*)\.(js|css|less|scss|styl)$
+- (^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$
+
+# Modernizr
+- (^|/)modernizr\-\d\.\d+(\.\d+)?\.js$
+- (^|/)modernizr\.custom\.\d+\.js$
+
+# Project Specifc
+- chroma.min.js
+- spectrum.js
+- ntc.js
