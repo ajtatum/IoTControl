@@ -1,4 +1,4 @@
-Welcome to Hacker101!
+Welcome to IoTControl!
 =====================
 
 IoTControl is an ASP.NET MVC 5 application to control Internet of Things (IoT) devices. This is a personal project that I work on to play around with IoT device APIs; however, it works "in the wild."
