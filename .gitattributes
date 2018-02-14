@@ -68,33 +68,4 @@
 # Set Language
 *.cs linguist-language=csharp
 
-# Visual Studio IntelliSense
--vsdoc\.js$ linguist-generated=true
-\.intellisense\.js$ linguist-generated=true
-
-# NuGet
-^[Pp]ackages\/.+\.\d+\/ linguist-generated=true
-
-# Minified JavaScript and CSS
-(\.|-)min\.(js|css)$ linguist-generated=true
-
-# jQuery
-(^|/)jquery([^.]*)\.js$ linguist-vendored
-(^|/)jquery\-\d\.\d+(\.\d+)?\.js$ linguist-vendored=true
-
-# jQuery validation plugin (MS bundles this with asp.net mvc)
-(^|/)jquery([^.]*)\.validate(\.unobtrusive)?\.js$ linguist-vendored=true
-(^|/)jquery([^.]*)\.unobtrusive\-ajax\.js$ linguist-vendored=true
-
-# Bootstrap css and js
-(^|/)bootstrap([^.]*)\.(js|css|less|scss|styl)$ linguist-vendored=true
-(^|/)custom\.bootstrap([^\s]*)(js|css|less|scss|styl)$ linguist-vendored=true
-
-# Modernizr
-(^|/)modernizr\-\d\.\d+(\.\d+)?\.js$ linguist-vendored=true
-(^|/)modernizr\.custom\.\d+\.js$ linguist-vendored=true
-
-# Project Specifc
-chroma.min.js linguist-vendored=true
-spectrum.js linguist-vendored=true
-ntc.js linguist-vendored=true
+IoTControl.Web/Scripts/* linguist-vendored
